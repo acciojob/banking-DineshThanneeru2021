@@ -11,24 +11,12 @@ public class BankAccount {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public double getBalance() {
         return balance;
     }
 
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-
     public double getMinBalance() {
         return minBalance;
-    }
-
-    public void setMinBalance(double minBalance) {
-        this.minBalance = minBalance;
     }
 
     public BankAccount() {
@@ -45,49 +33,22 @@ public class BankAccount {
         //Each digit of an account number can lie between 0 and 9 (both inclusive)
         //Generate account number having given number of 'digits' such that the sum of digits is equal to 'sum'
         //If it is not possible, throw "Account Number can not be generated" exception
-        String ans="";
-        int[] res = new int[digits];
-        if (sum == 0) {
-                if (digits == 1)
-                    return "0";
-                else
-                    throw new Exception("Account Number can not be generated");
-
-            }
 
 
-
-        else {
-
-                if (sum > (9 * digits))
-                    throw new Exception("Account Number can not be generated");
-
-
-
-
-
-            // deduct sum by one to account for cases later
-            // (There must be 1 left for the most significant
-            //  digit)
-            sum -= 1;
-
-            // Fill last m-1 digits (from right to left)
-            for (int i = digits - 1; i > 0; i--) {
-                // If sum is still greater than 9,
-                // digit must be 9
-                if (sum > 9) {
-                    res[i] = 9;
-                    sum -= 9;
-                }
-                else {
-                    res[i] = sum;
-                    sum = 0;
-                }
-            }
-
-        }
-        ans=Arrays.toString(res);
-        return ans;
+       if(digits*9<sum)
+           throw new Exception("Account Number can not be generated");
+       String ans="";
+       while(sum>9)
+       {
+           ans+=9;
+           sum-=9;
+       }
+       ans=ans+(sum+"");
+       while(ans.length()<digits)
+       {
+           ans=ans+'0';
+       }
+       return ans;
     }
 
 
@@ -101,11 +62,10 @@ public class BankAccount {
 
     public void withdraw(double amount) throws Exception {
         // Remember to throw "Insufficient Balance" exception, if the remaining amount would be less than minimum balance
-
-          if(balance-amount<minBalance)
+         if(balance-amount>=minBalance)
+             balance-=amount;
+         else
             throw new Exception("Insufficient Balance");
-          else
-              balance=balance-amount;
 
 
 
