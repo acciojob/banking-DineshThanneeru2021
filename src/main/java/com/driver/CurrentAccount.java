@@ -56,17 +56,19 @@ public class CurrentAccount extends BankAccount{
 
     }
 
-    public void setTradeLicenseId(String tradeLicenseId) {
-        this.tradeLicenseId = tradeLicenseId;
-    }
+
 
     public String rearrange(String s)
     {
         int n=s.length();
         int[] count=new int[26];
-        for(int i=0;i<s.length();i++)
+        for(int i=0;i<26;i++)
         {
-            count[(int)s.charAt(i)-(int)'A']++;
+            count[i]=0;
+        }
+        for(char ch:s.toCharArray())
+        {
+            count[(int)ch-(int)'A']++;
         }
         char max_char=getMaxCountChar(count);
         int max_count=count[(int)max_char-(int)'A'];
@@ -86,7 +88,7 @@ public class CurrentAccount extends BankAccount{
         int index=0;
          while(max_count>0)
          {
-             res+=res.substring(0,index)+max_char+res.substring(index+1);
+             res=res.substring(0,index)+max_char+res.substring(index+1);
              index+=2;
              max_count--;
          }
@@ -96,8 +98,8 @@ public class CurrentAccount extends BankAccount{
          {
              while(count[i]>0)
              {
-                 index+=(i>=n)?1:index;
-                 res+=res.substring(0,index)+(char)((int)'A'+i)+res.substring(index+1);
+                 index=(index>=n)?1:index;
+                 res=res.substring(0,index)+(char)((int)'A'+i)+res.substring(index+1);
                  index+=2;
                  count[i]--;
              }
