@@ -55,6 +55,11 @@ public class CurrentAccount extends BankAccount{
         return ch;
 
     }
+
+    public void setTradeLicenseId(String tradeLicenseId) {
+        this.tradeLicenseId = tradeLicenseId;
+    }
+
     public String rearrange(String s)
     {
         int n=s.length();
