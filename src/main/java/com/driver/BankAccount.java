@@ -95,17 +95,17 @@ public class BankAccount {
 
     public void deposit(double amount) {
         //add amount to balance
-        this.balance+=amount;
+        balance+=amount;
 
     }
 
     public void withdraw(double amount) throws Exception {
         // Remember to throw "Insufficient Balance" exception, if the remaining amount would be less than minimum balance
 
-          if(this.balance-amount<this.minBalance)
+          if(balance-amount<minBalance)
             throw new Exception("Insufficient Balance");
           else
-              this.balance=this.balance-amount;
+              balance=balance-amount;
 
 
 
